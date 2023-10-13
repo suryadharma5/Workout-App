@@ -1,17 +1,19 @@
+require('dotenv').config()
 const express = require('express')
+const workoutRoutes = require('./routes/workouts')
 
 //create express app
 const app = express()
 
-// routes
-app.get('/', (req, res) => {
-    res.json({
-        msg : "Hello dunia"
-    })
+// middleware -> aktif jika kita kirim request ke port 4000
+app.use((req, res, next) => {
+    console.log(req.path, req.method)
+    next()
 })
 
-
+// routes yang ada di workout.js akan dijalankan ketika kita hit request ke /api/workout
+app.use('/api/workout', workoutRoutes)
 //listen to request 
-app.listen(4000, () => {
-    console.log('listen to port 4000')
+app.listen(process.env.PORT, () => {
+    console.log(`'listen to port ${process.env.PORT}'`)
 })
