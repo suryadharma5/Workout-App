@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import WorkoutDetail from '../components/WorkoutDetail'
 
 function Home() {
 
@@ -18,7 +19,6 @@ function Home() {
                 }
             } catch (error) {
                 console.log(error)
-                console.log("object")
             }
         }
 
@@ -28,8 +28,8 @@ function Home() {
     return (
         <div className='home'>
             <div className="workouts">
-                {workouts && workouts.map((item)=>(
-                    <p key={item._id}>{item.title}</p>
+                {workouts && workouts.map((workout)=>(
+                    <WorkoutDetail key={workout._id} workout= {workout} />
                 ))}
             </div>
         </div>
