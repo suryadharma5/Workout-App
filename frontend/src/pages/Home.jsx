@@ -1,28 +1,31 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useWorkoutContext } from "../hooks/useWorkoutContext"
+
+// components
 import WorkoutDetail from '../components/WorkoutDetail'
 import WorkoutForm from '../components/WorkoutForm'
 
 function Home() {
 
-    const [workouts, setWorkouts] = useState(null)
+    const {workouts, dispatch} = useWorkoutContext()
+
+    const fetchWorkout = async () => {
+        // kita ga perlu defined url karena jika tidak ada route yang tidak dikenali react, dia akan ke proxy yang ada di package.lock
+        // dan mengambil address proxy yaitu localhost:4000
+        try {
+            const response = await fetch('/api/workout/')
+            const json = await response.json()
+
+            if(response.ok){
+                dispatch({type: 'GET_WORKOUT', payload: json})
+            }
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     useEffect(() => {
-        const fetchWorkout = async () => {
-            // kita ga perlu defined url karena jika tidak ada route yang tidak dikenali react, dia akan ke proxy yang ada di package.lock
-            // dan mengambil address proxy yaitu localhost:4000
-            try {
-                const response = await fetch('/api/workout/')
-                const json = await response.json()
-    
-                if (response.ok){
-                    setWorkouts(json)
-                    console.log("json")
-                }
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
         fetchWorkout()
     }, [])
 
