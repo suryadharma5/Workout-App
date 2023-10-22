@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 
 const Schema = mongoose.Schema
 
@@ -13,5 +14,26 @@ const userSchema = new Schema({
         required: true,
     }
 })
+
+// static signup method (custom)
+userSchema.statics.signup = async function(email, password) {
+
+    const exists = await this.findOne({ email })
+
+    if (exists){
+        throw Error("Email already taken")
+    }
+
+    // salt ini buat nambahin extra layer security jadi misalnya passwordMy1784sjd99 -> nambahin string after pwd
+    const salt = await bcrypt.genSalt(10)
+    const hash = await bcrypt.hash(password, salt)
+
+    const user = await this.create({
+        email,
+        password: hash
+    })
+
+    return user
+}
 
 module.exports = mongoose.model('User', userSchema)
