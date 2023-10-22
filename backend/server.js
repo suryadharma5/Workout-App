@@ -1,8 +1,11 @@
 require('dotenv').config()
 
 const express = require('express')
-const workoutRoutes = require('./routes/workouts') // import semua routes yang ada di file workout.js
 const mongoose = require('mongoose')
+
+// import all routes
+const workoutRoutes = require('./routes/workouts') // import semua routes yang ada di file workout.js
+const userRoutes = require('./routes/user')
 
 //create express app
 const app = express()
@@ -19,6 +22,7 @@ app.use((req, res, next) => {
 
 // routes yang ada di workout.js akan dijalankan ketika kita hit request ke /api/workout
 app.use('/api/workout', workoutRoutes)
+app.use('/api/user', userRoutes )
 
 // connect to DB => return a promise
 mongoose.connect(process.env.MONGO_URI)
