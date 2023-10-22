@@ -34,6 +34,8 @@ function WorkoutForm() {
             setTitle('')
             setLoad('')
             setReps('')
+
+            // ini agar auto update di UI, jadi ga perlu reload lagi
             dispatch({type: 'CREATE_WORKOUT', payload: json})
         }
     }
