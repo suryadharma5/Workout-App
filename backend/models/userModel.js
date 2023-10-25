@@ -32,6 +32,7 @@ userSchema.statics.signup = async function(email, password) {
         throw Error("Password not strong enough")
     }
 
+    // this ngerefer ke usermodel
     const exists = await this.findOne({ email })
 
     if (exists){
