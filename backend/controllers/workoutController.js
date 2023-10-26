@@ -3,8 +3,9 @@ const mongoose = require('mongoose')
 
 // get all workouts
 const getWorkouts = async(req, res) => {
+    const user_id = req.user._id
     // karena mau ngambil semua dokumen maka tidak perlu mengisi kondisi di dalam {}
-    const workouts = await Workout.find({}).sort({createdAt: -1}) //descending
+    const workouts = await Workout.find({user_id}).sort({createdAt: -1}) //descending
 
     res.status(200).json(workouts)
 }
@@ -56,7 +57,9 @@ const createWorkout = async(req, res) => {
 
     // add data to db
     try {
-        const workout = await Workout.create({title, load, reps})
+        // property user ditambahkan ke request di middleware
+        const user_id = req.user._id
+        const workout = await Workout.create({title, load, reps, user_id})
         res.status(200).json(workout)
     }catch(err) {
         res.status(400).json({error : err.message})
