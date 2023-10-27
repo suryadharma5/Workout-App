@@ -12,7 +12,7 @@
             "destination": "/server.js"
         },
         {
-            "source": "server.jsapi/user/(.*)",
+            "source": "/api/user/(.*)",
             "destination": "/server.js"
         }
     ]
