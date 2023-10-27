@@ -8,12 +8,8 @@
     ],
     "rewrites": [
         {
-            "source": "/api/workout/(.*)",
-            "destination": "/server.js"
-        },
-        {
-            "source": "/api/user/(.*)",
-            "destination": "/server.js"
+            "source": "/api/(.*)",
+            "destination": "/"
         }
     ]
 }
