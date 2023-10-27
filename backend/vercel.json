@@ -1,11 +1,15 @@
 {
     "version": 2,
-    "functions": {
-      "/api/workout": {
-        "handler": "api/workouts.js"
-      },
-      "/api/user": {
-        "handler": "api/user.js"
-      }
-    }
+    "builds": [
+        { 
+            "src": "*.js", 
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/"
+        }
+    ]
 }
