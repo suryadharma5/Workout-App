@@ -8,12 +8,12 @@
     ],
     "routes": [
         {
-            "src": "/api/workout",
-            "dest": "/"
+            "src": "/api/workout/(.*)",
+            "dest": "server.js"
         },
         {
-            "src": "/api/user",
-            "dest": "/"
+            "src": "/api/user/(.*)",
+            "dest": "server.js"
         }
     ]
 }
