@@ -3,12 +3,12 @@ const jwt = require('jsonwebtoken')
 
 // create jwt
 const createToken = (_id) => {
-    return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d'})
+    return jwt.sign({ _id }, process.env.SECRET, { expiresIn: '3d' })
 }
 
 // signup user
 const signupUser = async (req, res) => {
-    const {email, password} = req.body
+    const { email, password } = req.body
 
     try {
         // signup adalah statics func dari userModel 
@@ -17,11 +17,10 @@ const signupUser = async (req, res) => {
         // create token
         const token = createToken(user._id)
 
-        return res.status(200).json({email, token})
+        return res.status(200).json({ email, token })
     } catch (error) {
-        return res.status(400).json({error: error.message})
+        return res.status(400).json({ error: error.message })
     }
-
 
 }
 
@@ -34,9 +33,9 @@ const loginUser = async (req, res) => {
 
         const token = createToken(user._id)
 
-        return res.status(200).json({email, token})
+        return res.status(200).json({ email, token })
 
-    }catch(error){
+    } catch (error) {
         return res.status(400).json({ error: error.message })
     }
 }
