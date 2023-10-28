@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 // import all routes
 const workoutRoutes = require('./routes/workouts') // import semua routes yang ada di file workout.js
@@ -9,6 +10,14 @@ const userRoutes = require('./routes/user')
 
 //create express app
 const app = express()
+
+app.use(cors(
+    {
+        origin: ["https://workout-app-client-eight.vercel.app"],
+        methods: ["POST", "GET", "DELETE", "PATCH"],
+        credentials: true
+    }
+))
 
 // middleware -> aktif jika kita kirim request ke port 4000
 app.use(express.json()) //akan ngeparse semua data yang dikirim
