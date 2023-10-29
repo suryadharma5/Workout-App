@@ -13,7 +13,7 @@ const app = express()
 
 app.use(cors(
     {
-        origin: ["https://workout-app-client-eight.vercel.app"],
+        origin: ["http://localhost:3000"],
         methods: ["POST", "GET", "DELETE", "PATCH"],
         credentials: true
     }
