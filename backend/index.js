@@ -13,7 +13,7 @@ const app = express()
 
 app.use(cors(
     {
-        origin: ["https://workout-app-kappa.vercel.app"],
+        origin: ["https://workout-app-client-eight.vercel.app"],
         methods: ["POST", "GET", "DELETE", "PATCH"],
         credentials: true
     }
