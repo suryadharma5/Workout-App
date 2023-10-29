@@ -22,7 +22,7 @@ function WorkoutForm() {
 
         const workout = {title, load, reps}
 
-        const response = await fetch('/api/workout', {
+        const response = await fetch('https://workout-app-kappa.vercel.app/api/workout', {
             method: 'POST',
             body: JSON.stringify(workout),
             headers: {

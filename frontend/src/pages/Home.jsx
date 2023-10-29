@@ -15,7 +15,7 @@ function Home() {
         // kita ga perlu defined url karena jika tidak ada route yang tidak dikenali react, dia akan ke proxy yang ada di package.lock
         // dan mengambil address proxy yaitu localhost:4000
         try {
-            const response = await fetch('/api/workout/', {
+            const response = await fetch('https://workout-app-kappa.vercel.app/api/workout/', {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }
