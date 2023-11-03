@@ -27,7 +27,7 @@ app.use((req, res, next) => {
     next()
 })
 
-// routes yang ada di workout.js akan dijalankan ketika kita hit request ke /api/workout
+// routes yang ada di workout.js akan dijalankan akan diisi prefix /api/workout terlebih dahulu
 app.use('/api/workout', workoutRoutes)
 app.use('/api/user', userRoutes )
 
